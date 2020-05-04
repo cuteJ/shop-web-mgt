@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="16px" viewBox="0 0 12 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+  <title>rocket</title>
+  <desc>Created with Sketch.</desc>
+  <g id="Sass" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="图标" transform="translate(-167.000000, -80.000000)" fill-rule="nonzero">
+      <g id="rocket" transform="translate(165.000000, 80.000000)">
+        <g>
+          <rect id="矩形" opacity="0" x="0" y="0" width="16" height="16"></rect>
+          <path d="M13.104,11.994 L13.104,12.265 L9.958,11.631 C9.755,12.31 8.94,12.83 7.99,12.83 C7.039,12.83 6.224,12.309 6.021,11.608 L2.898,12.219 L2.898,11.948 C2.898,10.409 3.328,9.3 4.3,8.372 C3.96,3.982 5.929,1.199 7.875,0.067 L7.989,0 L8.102,0.067 C10.049,1.199 11.994,3.982 11.678,8.373 C12.674,9.301 13.104,10.41 13.104,11.994 Z M8.984,6.518 C9.572,5.975 9.617,5.047 9.074,4.458 C8.531,3.87 7.604,3.824 7.015,4.367 C6.427,4.91 6.382,5.839 6.925,6.427 C7.468,7.016 8.396,7.061 8.984,6.518 Z M8.725,14.325 C8.725,14.981 8,16 8,16 C8,16 7.276,14.913 7.276,14.325 C7.276,13.827 7.592,13.42 8,13.42 C8.408,13.42 8.725,13.827 8.725,14.325 Z" id="形状" fill="#FFFFFF"></path>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

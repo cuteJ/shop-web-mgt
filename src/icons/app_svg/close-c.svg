@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+  <title>close-c</title>
+  <desc>Created with Sketch.</desc>
+  <g id="Sass" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="图标" transform="translate(-243.000000, -79.000000)" fill-rule="nonzero">
+      <g id="close-c" transform="translate(243.000000, 79.000000)">
+        <rect id="矩形" opacity="0" x="0" y="0" width="16" height="16"></rect>
+        <path d="M8,0.8 C4.032,0.8 0.8,4.032 0.8,8 C0.8,11.968 4.032,15.2 8,15.2 C11.968,15.2 15.2,11.968 15.2,8 C15.2,4.032 11.968,0.8 8,0.8 Z M10.832,10.368 C10.96,10.496 10.96,10.688 10.832,10.816 C10.768,10.88 10.688,10.912 10.608,10.912 C10.528,10.912 10.448,10.88 10.384,10.816 L8,8.448 L5.632,10.832 C5.568,10.896 5.488,10.928 5.408,10.928 C5.328,10.928 5.248,10.896 5.184,10.832 C5.056,10.704 5.056,10.512 5.184,10.384 L7.552,8 L5.168,5.632 C5.04,5.504 5.04,5.312 5.168,5.184 C5.296,5.056 5.488,5.056 5.616,5.184 L8,7.552 L10.368,5.184 C10.496,5.056 10.688,5.056 10.816,5.184 C10.944,5.312 10.944,5.504 10.816,5.632 L8.448,8 L10.832,10.368 Z" id="形状" fill="#FFFFFF"></path>
+      </g>
+    </g>
+  </g>
+</svg>

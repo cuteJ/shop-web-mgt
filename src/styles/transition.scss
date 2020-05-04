@@ -1,0 +1,110 @@
+//globl transition css
+
+/*fade*/
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.28s;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
+
+/*fade-transform*/
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  transition: all .5s;
+}
+
+.fade-transform-enter {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.fade-transform-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+/*breadcrumb transition*/
+.breadcrumb-enter-active,
+.breadcrumb-leave-active {
+  transition: all .5s;
+}
+
+.breadcrumb-enter,
+.breadcrumb-leave-active {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.breadcrumb-move {
+  transition: all .5s;
+}
+
+.breadcrumb-leave-active {
+  position: absolute;
+}
+
+/*
+linear	动画从头到尾的速度是相同的。
+ease	默认。动画以低速开始，然后加快，在结束前变慢。
+ease-in	动画以低速开始。
+ease-out	动画以低速结束。
+ease-in-out	动画以低速开始和结束。
+cubic-bezier(n,n,n,n)	在 cubic-bezier 函数中自己的值。可能的值是从 0 到 1 的数值。
+*/
+.shake {
+  &:hover {
+    animation: shake .25s ease-in-out;
+    -webkit-animation: shake .25s ease-in-out;
+    -moz-animation: shake .25s ease-in-out;
+    -o-animation: shake .25s ease-in-out;
+  }
+}
+
+.shake-loop {
+  &:hover {
+    animation: shake .25s infinite;
+    -webkit-animation: shake .25s infinite;
+    -moz-animation: shake .25s infinite;
+    -o-animation: shake .25s infinite;
+  }
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%, 80% {
+    transform: translate3d(+2px, 0, 0);
+  }
+  30%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%, 60% {
+    transform: translate3d(+4px, 0, 0);
+  }
+  50% {
+    transform: translate3d(-4px, 0, 0);
+  }
+}
+
+@-webkit-keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%, 80% {
+    transform: translate3d(+2px, 0, 0);
+  }
+  30%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%, 60% {
+    transform: translate3d(+4px, 0, 0);
+  }
+  50% {
+    transform: translate3d(-4px, 0, 0);
+  }
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="10px" viewBox="0 0 15 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+  <title>message</title>
+  <desc>Created with Sketch.</desc>
+  <g id="Sass" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="图标" transform="translate(-209.000000, -82.000000)" fill-rule="nonzero">
+      <g id="message" transform="translate(209.000000, 79.000000)">
+        <rect id="矩形" opacity="0" x="0" y="0" width="16" height="16"></rect>
+        <path d="M14.9797717,12.6453145 L14.9797717,3.81184756 L10.1984055,7.45177969 L12.6821455,10.2746818 L12.609139,10.3476083 L9.73156998,7.80918537 L7.97727141,9.14402436 L6.22295683,7.80918538 L3.34541981,10.3475923 L3.27249325,10.2746658 L5.75257175,7.45176369 L0.974771109,3.81913863 L0.974771109,12.6453145 L14.9797717,12.6453145 Z M14.6771129,3.30858878 L1.26657327,3.30858878 L7.97727141,8.41095338 L14.6771129,3.30858878 Z" id="形状" fill="#FFFFFF"></path>
+      </g>
+    </g>
+  </g>
+</svg>

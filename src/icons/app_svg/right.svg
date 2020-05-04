@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+  <title>right</title>
+  <desc>Created with Sketch.</desc>
+  <g id="Sass" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="图标" transform="translate(-125.000000, -149.000000)" fill-rule="nonzero">
+      <g id="right" transform="translate(120.000000, 147.000000)">
+        <rect id="矩形" opacity="0" x="0" y="0" width="16" height="16"></rect>
+        <path d="M11.8915,8.3145 C11.8995,8.299 11.9125,8.286 11.9195,8.27 C12.057,7.984 12.012,7.634 11.7685,7.404 L6.249,2.1835 C5.948,1.899 5.4735,1.9125 5.1885,2.213 C4.904,2.514 4.917,2.9885 5.218,3.2735 L10.1705,7.9585 L5.2375,12.713 C4.9395,13.0005 4.9305,13.475 5.218,13.7735 C5.365,13.9265 5.5615,14.003 5.758,14.003 C5.9455,14.003 6.133,13.933 6.2785,13.793 L11.748,8.5215 C11.7585,8.511 11.7625,8.4965 11.773,8.4855 C11.781,8.478 11.7895,8.4725 11.7975,8.4645 C11.84,8.42 11.8625,8.3655 11.8915,8.3145 Z" id="路径" fill="#FFFFFF"></path>
+      </g>
+    </g>
+  </g>
+</svg>
