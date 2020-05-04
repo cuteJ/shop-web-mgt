@@ -22,3 +22,6 @@ npm run build:sit
 # build for production environment
 npm run build:prod
 ```
+
+## 样例
+ [**演示地址**](http://shop-web-mgt.onlythinking.com/)
