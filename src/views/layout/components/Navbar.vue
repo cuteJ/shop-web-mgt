@@ -115,6 +115,7 @@
     height: 50px;
     line-height: 50px;
     border-radius: 0px !important;
+    background-color: white;
 
     .hamburger-container {
       line-height: 58px;

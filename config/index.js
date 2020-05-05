@@ -12,7 +12,7 @@ module.exports = {
     proxyTable: {
       // '*': {
       //   changeOrigin: true,
-      //   target: 'http://rule-test.quantum1tech.com:8300',
+      //   target: '',
       //   // pathRewrite: {
       //   //   '^/api': '/'
       //   // }

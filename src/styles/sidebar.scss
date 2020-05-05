@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 #app {
   // 主体区域
   .main-container {
@@ -5,6 +7,7 @@
     transition: margin-left .28s;
     margin-left: 188px;
     position: relative;
+    background-color: $main-container-bg;
   }
   // 侧边栏
   .sidebar-container {

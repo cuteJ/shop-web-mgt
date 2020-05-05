@@ -1,0 +1,17 @@
+@import '../variables.scss';
+
+// 绝对居中定位按钮
+@mixin abs-btn($width:300px, $bottom:$padding-md) {
+  position: absolute;
+  bottom: $bottom;
+  left: 50%;
+  margin-left: -($width/2);
+}
+
+@mixin abs-div($width:300px, $height:300px) {
+  width: $width;
+  height: $height;
+  position: absolute;
+  left: 50%;
+  margin-left: -($width/2);
+}

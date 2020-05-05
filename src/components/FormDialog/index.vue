@@ -15,12 +15,12 @@
                 class="dialog-footer"
             >
                 <div>
+                  <el-button @click="handleCancel">{{ $t('table.cancel') }}</el-button>
                     <el-button
                         waves
                         type="primary"
                         @click="handleSubmit"
-                    >{{ $t('table.confirm') }}</el-button>
-                    <el-button @click="handleCancel">{{ $t('table.cancel') }}</el-button>
+                    >{{ $t('table.confirmSave') }}</el-button>
                 </div>
             </div>
         </el-dialog>

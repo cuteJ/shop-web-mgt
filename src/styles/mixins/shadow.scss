@@ -1,0 +1,64 @@
+@import '../variables.scss';
+
+// https://ant.design/docs/spec/shadow-cn
+@mixin shadow($level: 1, $dir: 'down') {
+  @if $dir == 'down' {
+    @include shadow-down($level)
+  } @else if $dir == 'up' {
+    @include shadow-up($level)
+  } @else if $dir == 'left' {
+    @include shadow-left($level)
+  } @else if $dir == 'right' {
+    @include shadow-right($level)
+  } @else {
+    @include shadow-down($level)
+  }
+}
+
+@mixin shadow-up($level: 1) {
+  @if $level == 1 {
+    box-shadow: 0px -5px 12px 4px rgba(0, 0, 0, 0.09);
+  } @else if $level == 2 {
+    box-shadow: 0px -9px 28px 8px rgba(0, 0, 0, 0.05);
+  } @else if $level == 3 {
+    box-shadow: 0px -12px 48px 16px rgba(0, 0, 0, 0.03);
+  } @else {
+    box-shadow: 0px -5px 12px 4px rgba(0, 0, 0, 0.09);
+  }
+}
+
+@mixin shadow-down($level: 1) {
+  @if $level == 1 {
+    box-shadow: 0px 5px 14px 4px rgba(0, 0, 0, 0.09);
+  } @else if $level == 2 {
+    box-shadow: 0px 9px 28px 8px rgba(0, 0, 0, 0.05);
+  } @else if $level == 3 {
+    box-shadow: 0px 12px 48px 16px rgba(0, 0, 0, 0.03);
+  } @else {
+    box-shadow: 0px 5px 14px 4px rgba(0, 0, 0, 0.09);
+  }
+}
+
+@mixin shadow-left($level: 1) {
+  @if $level == 1 {
+    box-shadow: -5px 0px 12px 4px rgba(0, 0, 0, 0.09);
+  } @else if $level == 2 {
+    box-shadow: -9px 0px 28px 8px rgba(0, 0, 0, 0.05);
+  } @else if $level == 3 {
+    box-shadow: -12px 0px 48px 16px rgba(0, 0, 0, 0.03);
+  } @else {
+    box-shadow: -5px 0px 14px 4px rgba(0, 0, 0, 0.09);
+  }
+}
+
+@mixin shadow-right($level: 1) {
+  @if $level == 1 {
+    box-shadow: 5px 0px 12px 4px rgba(0, 0, 0, 0.09);
+  } @else if $level == 2 {
+    box-shadow: 9px 0px 28px 8px rgba(0, 0, 0, 0.05);
+  } @else if $level == 3 {
+    box-shadow: 12px 0px 48px 16px rgba(0, 0, 0, 0.03);
+  } @else {
+    box-shadow: 5px 0px 14px 4px rgba(0, 0, 0, 0.09);
+  }
+}

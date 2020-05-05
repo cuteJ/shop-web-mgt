@@ -64,6 +64,7 @@ export default {
     delete: '删除',
     cancel: '取 消',
     confirm: '确 定',
+    confirmSave: '保 存',
     submit: '提交',
     grant: '授权',
     batch: '批量',

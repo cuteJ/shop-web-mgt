@@ -4,6 +4,9 @@
 @import './element-ui.scss';
 @import './sidebar.scss';
 @import './btn.scss';
+@import './mixins/common';
+@import './mixins/hairline';
+@import './mixins/shadow';
 
 body {
   height: 100%;
@@ -132,6 +135,10 @@ code {
 //main-container全局样式
 .app-container {
   padding: 20px;
+  margin: 12px;
+  border-radius: 4px;
+  background-color: $white;
+  @include shadow-down()
 }
 
 .components-container {

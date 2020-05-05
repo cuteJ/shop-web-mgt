@@ -19,7 +19,7 @@ export function parseTime(time, cFormat) {
   }
 
   //查询对应时区 http://www.beijing-time.org/shiqu/
-  // const timezone = 5.5; //目标印度搞起，东5区
+  // const timezone = 5.5; //东5区
   // const offset_GMT = date.getTimezoneOffset();
   // const nowDate = date.getTime();
   // date = new Date(nowDate + offset_GMT * 60 * 1000 + timezone * 60 * 60 * 1000);
