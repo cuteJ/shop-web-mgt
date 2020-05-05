@@ -4,6 +4,6 @@ module.exports = {
   BASE_API: '"https://www.zzhjshop.com/ma"',
   APP_CONFIG:{
     name:'"生产环境应用"',
-    baseUrl: '"https://www.zzhjshop.com"'
+    baseUrl: '"https://www.zzhjshop.com/ma"'
   }
 }
