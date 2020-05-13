@@ -98,7 +98,7 @@
         loginPage: true,
         indexBg: 'url(/static/images/login-bg.png)',
         loginForm: {
-          username: 'admin',
+          username: 'demo',
           password: '123123'
         },
         loginRules: {
