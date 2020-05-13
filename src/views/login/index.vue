@@ -10,7 +10,7 @@
 
       <div class="to-login-btn">
         <el-button
-          class="login-btn shake"
+          class="login-btn"
           type="primary"
           @click.native.prevent="toLogin"
         >{{ $t('login.logIn') }}
