@@ -6,16 +6,6 @@ Vue.use(Router)
 /* Layout */
 import Layout from '@/views/layout/Layout'
 
-/* Router Modules */
-import merchantRouter from './modules/merchant'
-import deliveryRouter from './modules/delivery'
-import goodsRouter from './modules/goods'
-import orderRouter from './modules/order'
-import userRouter from './modules/user'
-import systemRouter from './modules/system'
-import marketRouter from './modules/market'
-import habitRouter from './modules/habit'
-
 /** note: Submenu only appear when children.length>=1
  *  detail see  https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
  **/
@@ -66,11 +56,6 @@ export const constantRouterMap = [
     component: () => import('@/views/errorPage/401'),
     hidden: true
   },
-  // {
-  //   path: '#',
-  //   label: 'integrate',
-  //   children: []
-  // },
   {
     path: '',
     component: Layout,
@@ -109,42 +94,11 @@ export const constantRouterMap = [
         meta: {title: 'profile'}
       }
     ]
-  },
-  // {
-  //   path: '#',
-  //   label: 'system',
-  //   children: []
-  // },
-]
+  }
+];
 
 export default new Router({
   // mode: 'history', // require service support
   scrollBehavior: () => ({y: 0}),
   routes: constantRouterMap
 })
-
-export const asyncRouterMap = [
-  {
-    path: '/profile',
-    component: Layout,
-    hidden: true,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/profile/index'),
-        name: 'userProfile',
-        meta: {title: 'profile'}
-      }
-    ]
-  },
-
-  /** When your routing table is too long, you can split it into small modules**/
-  // merchantRouter,
-  // marketRouter,
-  // deliveryRouter,
-  // goodsRouter,
-  // orderRouter,
-  // userRouter,
-  systemRouter,
-  {path: '*', redirect: '/404', hidden: true}
-]

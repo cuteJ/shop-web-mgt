@@ -9,6 +9,7 @@
             v-waves
             icon="el-icon-plus"
             @click="formOpen"
+            v-permission="['sys:role:save']"
           >{{ $t('table.add') }}
           </el-button>
           <el-button
@@ -16,6 +17,7 @@
             size="small"
             v-waves
             icon="el-icon-edit"
+            v-permission="['sys:role:save']"
             @click="handleSelected('edit')"
           >{{ $t('table.edit') }}
           </el-button>
@@ -25,7 +27,7 @@
             v-waves
             icon="el-icon-setting"
             @click="handleSelected('bindMenus')"
-            v-permission="['sys:grant:index']"
+            v-permission="['sys:role:grant']"
           >{{ $t('table.bind') }}{{ $t('table.menu') }}
           </el-button>
           <el-button
@@ -34,7 +36,7 @@
             v-waves
             icon="el-icon-setting"
             @click="handleSelected('bindAuthorities')"
-            v-permission="['sys:grant:index']"
+            v-permission="['sys:role:grant']"
           >{{$t('table.bind')}}{{ $t('table.authority') }}
           </el-button>
         </el-col>
@@ -246,6 +248,7 @@
   import {cacheData} from '@/utils/cache'
   import permission from '@/directive/permission/index.js' // 权限判断指令
   import checkPermission from '@/utils/permission' // 权限判断函数
+  import {validatorUsername} from '@/utils/validatorForm'
 
   import MenuSelect from './components/menuSelect'
   import AuthoritySelect from './components/authoritySelect'
@@ -310,6 +313,11 @@
             {
               required: true,
               validator: validatorRequired,
+              trigger: 'blur'
+            },
+            {
+              required: true,
+              validator: validatorUsername,
               trigger: 'blur'
             }
           ]
@@ -395,12 +403,9 @@
           this.bindAuthoritiesVisible = false
           return;
         }
-        const authorityIds = multipleSelection.map(v => {
-          return v.id
-        })
         batchGrantRolePermissions({
           grantIds: [roleId],
-          permissions: authorityIds
+          permissions: multipleSelection
         })
           .then(data => {
             this.handleFilter()

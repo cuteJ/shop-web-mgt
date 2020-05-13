@@ -15,16 +15,20 @@ export default {
     sysUserManager: '用户管理',
     sysRoleManager: '角色管理',
     sysMenuManager: '菜单管理',
-    sysDicManager: '码类管理',
+    sysDicManager: '常量管理',
     sysJobManager: '定时任务',
-    sysApiListManager: 'API管理',
+    sysApiListManager: '接口列表',
     sysAuthorityManager: '权限管理',
     sysRegionManager: '地区管理',
     sysMetadataManager: '数据字典',
-    system: '权限',
     sysJobRunLogManager: '实例日志',
-    habitTemplateManager: '习惯模版',
+    sysOptLogManager: '操作日志',
+    userLoginManager: '用户列表',
+    appBrandManager: '应用管理',
+    toolsManager: '基础组件',
+    system: '权限',
     integrate: '综合',
+    parent: '父菜单'
   },
   navbar: {
     logOut: '退出登录',
@@ -86,7 +90,8 @@ export default {
     back: '返回',
     byOrder: '排序',
     success: '成功',
-    fail: '失败'
+    fail: '失败',
+    sync: '同步数据'
   },
   theme: {
     change: '换肤'
@@ -98,7 +103,8 @@ export default {
     closeAll: '关闭所有'
   },
   action: {
-    required: '必填'
+    required: '必填',
+    unique: '已经存在'
   },
   utils: {
     request: {
@@ -136,6 +142,7 @@ export default {
   views: {
     commons: {
       confirm: {
+        text: '确认操作？',
         remove_text: '确认删除这条记录？',
         ok: '确认进行操作？',
         cancel: '已取消操作'
@@ -150,7 +157,8 @@ export default {
       }
     },
     errorPage: {
-      msg_404: '请检查您输入的网址是否正确，请点击以下按钮返回主页或者发送错误报告',
+      msg_blank_404: '大哥，你还没这个写页面吧！',
+      msg_404: '请检查您输入的网址是否正确，请点击以下按钮返回主页',
       msg_401: '你没有权限去该页面',
       goHome: '回首页'
     },
@@ -209,23 +217,26 @@ export default {
       },
       sysAuthorityManager: {
         formData: {
-          authorityName: "权限名称",
+          authorityName: "描述",
+          module: '模块',
+          domain: '业务',
+          action: '动作',
           shiroCode: "ShiroCode"
         }
       },
       sysDicManager: {
         action: {
-          h1: '码类管理',
-          h2: '码值管理'
+          h1: '常量类型',
+          h2: '常量列表'
         },
         formData: {
-          typeName: '码类名称',
-          typeCode: '码类编号',
+          typeName: '类型名称',
+          typeCode: '类型编号',
         },
         formDataDic: {
-          valName: '码值名称',
-          typeCode: '码类名称',
-          valCode: '码值编号',
+          valName: '常量名称',
+          typeCode: '类型名称',
+          valCode: '常量编号',
         },
       },
       sysJobManager: {
@@ -319,9 +330,10 @@ export default {
           input_placeholder: '输入关键字进行过滤',
           bindAuthorities: '绑定权限',
           formOpen: '请选择父菜单',
+          empty: '请选择左边菜单进行编辑'
         },
         action: {
-          formOpenParams: '点击进行编辑',
+          formOpenParams: '编辑',
           append: '追加',
           remove: '删除',
           add: '同级增加',
@@ -330,11 +342,16 @@ export default {
           update: '更新',
         },
         formData: {
-          path: '路径',
-          component: '组件',
+          name: '组件名称',
+          path: '路由地址',
+          component: '页面组件',
           hidden: '是否隐藏',
-          meta: '菜单参数',
-          parentId: '父ID',
+          hiddenDesc: '(选中是则不展示在菜单栏)',
+          alwaysShow: '始终显示',
+          alwaysShowDesc: '(选中是则无论其子级路由的长度如何，它将始终显示根菜单)',
+          meta: '目录参数',
+          metaDesc: '(设置参数 title: \'目录\'，icon: \'child\', noCache: true)',
+          parentId: '上级菜单',
           redirect: '重定向',
         }
       },
@@ -372,9 +389,80 @@ export default {
           pwd: '密码',
           realName: '姓名',
           phoneNo: '手机号',
-          email: '邮件',
+          email: '邮箱',
           roleNames: '角色'
         },
+      },
+      sysMetadataManager: {
+        action: {
+          handleStatus_confirm: '确认操作',
+          handleStatus_cancel: '已取消操作'
+        },
+        formData: {
+          tableName: '表名',
+          pkName: '主键',
+          columnName: '字段名',
+          typeName: '类型',
+          notNull: '不为空',
+          remarks: '描述',
+          noData: '暂无'
+        },
+      },
+      sysOptLogManager: {
+        formData: {
+          ipGeo: "IP位置",
+          operator: "操作人",
+          optIp: "IP",
+          optName: "操作说明",
+          requestData: "请求数据",
+          requestUrl: "请求地址"
+        },
+      }
+    },
+    app: {
+      appBrandManager: {
+        action: {
+          setting: '小程序配置',
+        },
+        formData: {
+          appName: "名称",
+          appNo: "编号",
+          appDesc: "简介",
+          logo: "Logo"
+        },
+        formDataMaConfig: {
+          aesKey: "AESKEY",
+          aid: "应用ID",
+          appId: "小程序ID",
+          appKey: "小程序Key",
+          appNo: "应用编号",
+          maType: "小程序类型",
+          msgDataFormat: "推送数据格式",
+          secret: "小程序密钥",
+          token: "Token"
+        },
+      }
+    },
+    user: {
+      userLoginManager: {
+        action: {
+          maSession: '小程序会话',
+        },
+        formData: {
+          appNo: "应用编号",
+          avatarUrl: "头像",
+          city: "城市",
+          country: "国家",
+          gender: '性别',
+          maType: "类型",
+          nickName: "昵称",
+          openid: "openid",
+          password: "密码",
+          phoneNo: "手机号",
+          province: "省份",
+          unionid: "联合ID",
+          username: "用户名"
+        }
       }
     }
   }

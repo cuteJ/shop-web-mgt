@@ -56,12 +56,10 @@ ease-in-out	动画以低速开始和结束。
 cubic-bezier(n,n,n,n)	在 cubic-bezier 函数中自己的值。可能的值是从 0 到 1 的数值。
 */
 .shake {
-  &:hover {
-    animation: shake .25s ease-in-out;
-    -webkit-animation: shake .25s ease-in-out;
-    -moz-animation: shake .25s ease-in-out;
-    -o-animation: shake .25s ease-in-out;
-  }
+  animation: shake .25s infinite;
+  -webkit-animation: shake .25s ease-in-out;
+  -moz-animation: shake .25s ease-in-out;
+  -o-animation: shake .25s ease-in-out;
 }
 
 .shake-loop {
@@ -73,38 +71,38 @@ cubic-bezier(n,n,n,n)	在 cubic-bezier 函数中自己的值。可能的值是�
   }
 }
 
-@keyframes shake {
-  10%, 90% {
-    transform: translate3d(-1px, 0, 0);
-  }
-  20%, 80% {
-    transform: translate3d(+2px, 0, 0);
-  }
-  30%, 70% {
-    transform: translate3d(-4px, 0, 0);
-  }
-  40%, 60% {
-    transform: translate3d(+4px, 0, 0);
-  }
-  50% {
-    transform: translate3d(-4px, 0, 0);
-  }
-}
-
-@-webkit-keyframes shake {
-  10%, 90% {
-    transform: translate3d(-1px, 0, 0);
-  }
-  20%, 80% {
-    transform: translate3d(+2px, 0, 0);
-  }
-  30%, 70% {
-    transform: translate3d(-4px, 0, 0);
-  }
-  40%, 60% {
-    transform: translate3d(+4px, 0, 0);
-  }
-  50% {
-    transform: translate3d(-4px, 0, 0);
-  }
-}
+//@keyframes shake {
+//  10%, 90% {
+//    transform: translate3d(-1px, 0, 0);
+//  }
+//  20%, 80% {
+//    transform: translate3d(+2px, 0, 0);
+//  }
+//  30%, 70% {
+//    transform: translate3d(-4px, 0, 0);
+//  }
+//  40%, 60% {
+//    transform: translate3d(+4px, 0, 0);
+//  }
+//  50% {
+//    transform: translate3d(-4px, 0, 0);
+//  }
+//}
+//
+//@-webkit-keyframes shake {
+//  10%, 90% {
+//    transform: translate3d(-1px, 0, 0);
+//  }
+//  20%, 80% {
+//    transform: translate3d(+2px, 0, 0);
+//  }
+//  30%, 70% {
+//    transform: translate3d(-4px, 0, 0);
+//  }
+//  40%, 60% {
+//    transform: translate3d(+4px, 0, 0);
+//  }
+//  50% {
+//    transform: translate3d(-4px, 0, 0);
+//  }
+//}

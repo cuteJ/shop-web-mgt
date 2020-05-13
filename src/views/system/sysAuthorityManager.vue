@@ -1,14 +1,38 @@
 <template>
   <div class="app-container">
+    <div class="filter-container">
+      <el-input
+        :placeholder="$t('views.system.sysAuthorityManager.formData.module')"
+        v-model="listQuery.module"
+        style="width: 180px;"
+        @keyup.enter.native="handleFilter"
+      >
+      </el-input>
+      <el-input
+        :placeholder="$t('views.system.sysAuthorityManager.formData.domain')"
+        v-model="listQuery.domain"
+        style="width: 180px;"
+        @keyup.enter.native="handleFilter"
+      >
+      </el-input>
+      <el-input
+        :placeholder="$t('views.system.sysAuthorityManager.formData.action')"
+        v-model="listQuery.action"
+        style="width: 180px;"
+        @keyup.enter.native="handleFilter"
+      >
+      </el-input>
+    </div>
     <div class="actions-container">
       <el-row>
-        <el-col :span="24">
+        <el-col :span="20">
           <el-button
             class="action-item"
             size="small"
             v-waves
             icon="el-icon-plus"
             @click="formOpen"
+            v-permission="['sys:authority:save']"
           >{{ $t('table.add') }}
           </el-button>
           <el-button
@@ -16,9 +40,36 @@
             size="small"
             v-waves
             icon="el-icon-edit"
+            v-permission="['sys:authority:save']"
             @click="handleSelected('edit')"
           >{{ $t('table.edit') }}
           </el-button>
+          <el-button
+            class="action-item"
+            size="small"
+            v-waves
+            icon="el-icon-refresh"
+            @click="handleSyncAuthorities"
+          >{{ $t('table.sync') }}
+          </el-button>
+        </el-col>
+        <el-col :span="4">
+          <div class="right-actions">
+            <el-button
+              class="action-item"
+              size="small"
+              icon="el-icon-circle-close"
+              @click="handleReset"
+            >{{ $t('table.reset') }}
+            </el-button>
+            <el-button
+              class="action-item"
+              size="small"
+              icon="el-icon-search"
+              @click="handleFilter"
+            >{{ $t('table.query') }}
+            </el-button>
+          </div>
         </el-col>
       </el-row>
     </div>
@@ -43,7 +94,31 @@
         width="200px"
       >
         <template slot-scope="scope">
-          <span>{{ scope.row.shiroCode }}</span>
+          <span>{{ scope.row.id }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        :label="$t('views.system.sysAuthorityManager.formData.module')"
+        align="center"
+      >
+        <template slot-scope="scope">
+          <span>{{ scope.row.module }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        :label="$t('views.system.sysAuthorityManager.formData.domain')"
+        align="center"
+      >
+        <template slot-scope="scope">
+          <span>{{ scope.row.domain }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        :label="$t('views.system.sysAuthorityManager.formData.action')"
+        align="center"
+      >
+        <template slot-scope="scope">
+          <span>{{ scope.row.action }}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -55,16 +130,6 @@
           <span>{{ scope.row.authorityName }}</span>
         </template>
       </el-table-column>
-      <el-table-column
-        :label="$t('table.remark')"
-        align="center"
-        :show-overflow-tooltip='true'
-      >
-        <template slot-scope="scope">
-          <span>{{ scope.row.remark }}</span>
-        </template>
-      </el-table-column>
-
       <el-table-column
         prop="createdTime"
         sortable
@@ -94,6 +159,7 @@
               type="text"
               v-waves
               icon="el-icon-edit"
+              v-permission="['sys:authority:save']"
               @click="formOpen(scope.row, true)"
             ></el-button>
           </el-tooltip>
@@ -109,6 +175,7 @@
               type="text"
               v-waves
               icon="el-icon-delete"
+              v-permission="['sys:authority:remove']"
               @click="handleRemove(scope.row.id)"
             ></el-button>
           </el-tooltip>
@@ -136,10 +203,37 @@
       >
         <el-form-item
           :label="$t('views.system.sysAuthorityManager.formData.shiroCode')"
-          prop="shiroCode"
+          prop="id"
         >
           <el-input
-            v-model="formData.shiroCode"
+            v-model="formData.id"
+            autocomplete="off"
+          ></el-input>
+        </el-form-item>
+        <el-form-item
+          :label="$t('views.system.sysAuthorityManager.formData.module')"
+          prop="module"
+        >
+          <el-input
+            v-model="formData.module"
+            autocomplete="off"
+          ></el-input>
+        </el-form-item>
+        <el-form-item
+          :label="$t('views.system.sysAuthorityManager.formData.domain')"
+          prop="domain"
+        >
+          <el-input
+            v-model="formData.domain"
+            autocomplete="off"
+          ></el-input>
+        </el-form-item>
+        <el-form-item
+          :label="$t('views.system.sysAuthorityManager.formData.action')"
+          prop="action"
+        >
+          <el-input
+            v-model="formData.action"
             autocomplete="off"
           ></el-input>
         </el-form-item>
@@ -170,7 +264,8 @@
   import {
     sysAuthorityList,
     sysAuthoritySave,
-    sysAuthorityRemove
+    sysAuthorityRemove,
+    syncAuthorities
   } from '@/api/system'
   import waves from '@/directive/waves' // Waves directive
   import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
@@ -211,7 +306,9 @@
           pageNum: 0,
           pageSize: 10,
           orderBy: '',
-          shiroCode: '',
+          module: '',
+          domain: '',
+          action: '',
           authorityName: '',
         },
         multipleSelection: [],
@@ -222,10 +319,33 @@
           remark: "",
           authorityName: "",
           byOrder: 0,
-          shiroCode: ""
+          module: '',
+          domain: '',
+          action: '',
         },
         rules: {
-          shiroCode: [
+          id: [
+            {
+              required: true,
+              trigger: 'blur',
+              validator: validatorRequired
+            }
+          ],
+          module: [
+            {
+              required: true,
+              trigger: 'blur',
+              validator: validatorRequired
+            }
+          ],
+          domain: [
+            {
+              required: true,
+              trigger: 'blur',
+              validator: validatorRequired
+            }
+          ],
+          action: [
             {
               required: true,
               trigger: 'blur',
@@ -259,13 +379,23 @@
         this.listQuery.pageNum = 0
         this.handleQueryList()
       },
+      handleReset() {
+        this.listQuery.pageNum = 0
+        this.listQuery.module = ''
+        this.listQuery.domain = ''
+        this.listQuery.action = ''
+        this.listQuery.authorityName = ''
+        this.handleQueryList()
+      },
       /***********************Remote query list************************* */
       handleQueryList() {
         this.listLoading = true
         let query = {
           pageSize: this.listQuery.pageSize,
           pageNum: this.listQuery.pageNum,
-          'params[shiroCode]': this.listQuery.shiroCode,
+          'params[module]': this.listQuery.module,
+          'params[domain]': this.listQuery.domain,
+          'params[action]': this.listQuery.action,
           'params[authorityName]': this.listQuery.authorityName
         }
         sysAuthorityList(query)
@@ -295,6 +425,15 @@
       formClose() {
         this.formVisible = false
         this.$refs['formData'].resetFields()
+      },
+      handleSyncAuthorities() {
+        this.$confirm(this.$t('views.commons.confirm.text'), {
+          type: 'warning'
+        }).then(() => {
+          syncAuthorities().then(response => {
+            this.handleQueryList()
+          })
+        })
       },
       // 删除处理
       handleRemove(id) {

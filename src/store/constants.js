@@ -8,10 +8,15 @@ export const componentsMap = {
   sysApiListManager: () => import('@/views/system/sysApiListManager'),
   sysRegionManager: () => import('@/views/system/sysRegionManager'),
   sysMetadataManager: () => import('@/views/system/sysMetadataManager'),
-  habitTemplateManager: () => import('@/views/habit/habitTemplateManager')
-}
+  sysOptLogManager: () => import('@/views/system/sysOptLogManager'),
+  toolsManager: () => import('@/views/tools/toolsManager'),
+  appBrandManager: () => import('@/views/app/appBrandManager'),
+  userLoginManager: () => import('@/views/user/userLoginManager'),
+  blank: () => import('@/views/errorPage/blank')
+};
 
 export const menusComponents = [
+  'parent',
   'sysUserManager',
   'sysRoleManager',
   'sysJobManager',
@@ -20,5 +25,8 @@ export const menusComponents = [
   'sysAuthorityManager',
   'sysApiListManager',
   'sysRegionManager',
-  'sysMetadataManager'
-]
+  'sysMetadataManager',
+  'toolsManager',
+  'appBrandManager',
+  'userLoginManager'
+];

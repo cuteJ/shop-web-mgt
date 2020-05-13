@@ -1,10 +1,10 @@
 <template>
-  <div class="app-container">
+  <div class="app-container clearfix">
     <div class="metadata-left">
       <div class="metadata-table-filter">
         <el-input clearable
                   @keyup.enter.native="handleFilter"
-                  placeholder="请输入内容" v-model="listQuery.tableName">
+                  :placeholder="$t('components.dyFilterInput.placeholder')" v-model="listQuery.tableName">
           <el-button slot="append" icon="el-icon-search"
                      @click="handleFilter"
                      v-waves></el-button>
@@ -23,19 +23,21 @@
         <el-button
           @click="handleSyncData"
           class="metadata-action-item"
+          icon="el-icon-refresh"
+          v-permission="['sys:db:sync']"
           v-waves
-        >同步数据
+        >{{ $t('table.sync') }}
         </el-button>
       </div>
 
       <el-form v-if="row.tableName" label-width="100px" class="metadata-body">
         <el-form-item
-          label="表名"
+          :label="$t('views.system.sysMetadataManager.formData.tableName')"
         >
           <span>{{row.tableName + ' (' + row.remarks + ')'}}</span>
         </el-form-item>
         <el-form-item
-          label='主键'
+          :label="$t('views.system.sysMetadataManager.formData.pkName')"
         >
           <span>{{row.pkName}}</span>
         </el-form-item>
@@ -44,7 +46,7 @@
             :data="row.columns"
             border>
             <el-table-column
-              label="字段名"
+              :label="$t('views.system.sysMetadataManager.formData.columnName')"
               align="center"
             >
               <template slot-scope="scope">
@@ -52,7 +54,7 @@
               </template>
             </el-table-column>
             <el-table-column
-              label="类型"
+              :label="$t('views.system.sysMetadataManager.formData.typeName')"
               align="center"
             >
               <template slot-scope="scope">
@@ -60,16 +62,16 @@
               </template>
             </el-table-column>
             <el-table-column
-              label="不为空"
+              :label="$t('views.system.sysMetadataManager.formData.notNull')"
               align="center"
               width="80px"
             >
               <template slot-scope="scope">
-                <span>{{ scope.row.notNull === true ? '是' : '否' }}</span>
+                <span>{{ scope.row.notNull === true ? $t('views.commons.codes.yes') : $t('views.commons.codes.no') }}</span>
               </template>
             </el-table-column>
             <el-table-column
-              label="描述"
+              :label="$t('views.system.sysMetadataManager.formData.remarks')"
               align="center"
             >
               <template slot-scope="scope">
@@ -81,7 +83,7 @@
       </el-form>
       <div v-else class="metadata-body">
         <div style="text-align: center;">
-          <span>暂无</span>
+          <span> {{$t('views.system.sysMetadataManager.formData.noData')}}</span>
         </div>
       </div>
     </div>
@@ -167,7 +169,7 @@
         })
       },
       handleSyncData() {
-        this.$confirm('确认进行数据同步', {
+        this.$confirm(this.$t('views.commons.confirm.text'), {
           type: 'warning'
         }).then(() => {
           tableMetadataSync().then(response => {
@@ -274,13 +276,11 @@
     cursor: pointer;
 
     &.active {
-      color: rgba(242, 246, 252, 1);
-      background-color: rgba(96, 98, 102, 1);
+      background-color: rgba(244, 244, 244, 1);
     }
   }
 
   .metadata-item:hover {
-    color: rgba(242, 246, 252, 1);
-    background-color: rgba(96, 98, 102, 1);
+    background-color: rgba(244, 244, 244, 1);
   }
 </style>

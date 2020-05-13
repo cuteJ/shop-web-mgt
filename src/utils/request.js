@@ -38,14 +38,14 @@ service.interceptors.response.use(
      * 存在 errorCode 且 不为0 抛错
      */
     const res = response.data
-    if (res.hasOwnProperty('errorCode') && res.errorCode === 0) {
+    if (Object.prototype.hasOwnProperty.call(res, 'errorCode') && res.errorCode === 0) {
       Message({
         message: window.i18n.t('utils.request.opt_success'),
         type: 'success',
         duration: 5 * 1000
       })
       return response.data
-    } else if (res.hasOwnProperty('errorCode') && res.errorCode !== 0) {
+    } else if (Object.prototype.hasOwnProperty.call(res, 'errorCode') && res.errorCode !== 0) {
       Message({
         message: res.message,
         type: 'error',

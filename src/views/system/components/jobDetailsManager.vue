@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container">
+  <div class="app-container app-container_noshadow">
     <div class="filter-container">
     </div>
     <div class="actions-container">

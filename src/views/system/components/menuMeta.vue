@@ -5,12 +5,16 @@
       :title="$t('views.system.components.menuMeta.message')"
       :top="top"
       :width="width"
+      :close-on-click-modal="false"
       :visible.sync="formVisible"
       @close="handleCancel"
     >
       <el-row>
-        <el-col :span="20">
-          <div class="dynamic-action">
+        <el-col :span="14" style="padding-left: 100px">
+          <icon-picker :selected.sync="iconSelected"></icon-picker>
+        </el-col>
+        <el-col :span="6">
+          <div class="dynamic-action" style="float: right">
             <el-tooltip
               class="item"
               effect="dark"
@@ -43,6 +47,7 @@
           </div>
         </el-col>
       </el-row>
+
       <el-form
         :model="dynamicDataForm"
         ref="dynamicDataForm"
@@ -70,13 +75,13 @@
         class="dialog-footer"
       >
         <div>
+          <el-button @click="handleCancel">{{ $t('table.cancel') }}</el-button>
           <el-button
             waves
             type="primary"
             @click="handleFormSave"
           >{{ $t('table.confirm') }}
           </el-button>
-          <el-button @click="handleCancel">{{ $t('table.cancel') }}</el-button>
         </div>
       </div>
     </el-dialog>
@@ -85,6 +90,7 @@
 
 <script>
   import waves from '@/directive/waves' // Waves directive
+  import IconPicker from '@/components/IconPicker'
 
   const defaultParamsMap = {
     '1': [
@@ -120,6 +126,7 @@
       }
     },
     filters: {},
+    components: {IconPicker},
     data() {
       return {
         cacheData: {},
@@ -127,7 +134,8 @@
           params: []
         },
         required: window.i18n.t('action.required'),
-        rules: {}
+        rules: {},
+        iconSelected: ''
       }
     },
     computed: {
@@ -225,7 +233,8 @@
   }
 
   .dynamic-action {
-    float: right;
-    margin-bottom: 20px;
+  }
+  .dynamic-form{
+    margin-top: 20px;
   }
 </style>

@@ -1,14 +1,5 @@
 import request from '@/utils/request'
 
-
-export function test(r) {
-  return request({
-    url: `/test?r=${r}`,
-    method: 'get',
-    // responseType: 'blob'
-  })
-}
-
 export function regionByPid(parentId) {
   return request({
     url: `/api/sys/region/child/${parentId}`,
@@ -66,6 +57,15 @@ export function initRegion(depth, data) {
 export function selectOptions(selectType, query) {
   return request({
     url: `/api/sys/select/${selectType}`,
+    method: 'post',
+    params: query
+  })
+}
+
+//唯一值检测
+export function uniqueValue(selectType, query) {
+  return request({
+    url: `/api/sys/unique/${selectType}`,
     method: 'post',
     params: query
   })
@@ -152,6 +152,15 @@ export function sysAuthorityList(query) {
 export function sysAuthorityList_(query) {
   return request({
     url: '/api/sys/authority/_list',
+    method: 'post',
+    params: query
+  })
+}
+
+// 系统权限列表
+export function sysAuthorityTreeList_(query) {
+  return request({
+    url: '/api/sys/authority/tree_list',
     method: 'post',
     params: query
   })
@@ -541,5 +550,22 @@ export function tableMetadataSync() {
   return request({
     url: '/api/sys/metadata/sync',
     method: 'post'
+  })
+}
+
+// 权限数据同步同步
+export function syncAuthorities() {
+  return request({
+    url: '/api/sys/sync/authorities',
+    method: 'post'
+  })
+}
+
+// 系统操作日志
+export function optLogList(query) {
+  return request({
+    url: '/api/sys/opt_log/list',
+    method: 'post',
+    params: query
   })
 }

@@ -309,3 +309,7 @@ export function areaFormatter(value) {
   v[2] = value
   return area.province_list[parseInt(v[0])] + area.city_list[parseInt(v[1])] + area.county_list[parseInt(v[2])]
 }
+
+export function has(p) {
+  return Object.prototype.hasOwnProperty.call(this, p)
+}

@@ -9,6 +9,7 @@
             v-waves
             icon="el-icon-plus"
             @click="formOpen"
+            v-permission="['sys:user:save']"
           >{{ $t('table.add') }}
           </el-button>
           <el-button
@@ -16,6 +17,7 @@
             size="small"
             v-waves
             icon="el-icon-edit"
+            v-permission="['sys:user:save']"
             @click="handleSelected('edit')"
           >{{ $t('table.edit') }}
           </el-button>
@@ -25,7 +27,7 @@
             v-waves
             icon="el-icon-setting"
             @click="handleSelected('bindRoles')"
-            v-permission="['sys:grant:index']"
+            v-permission="['sys:user:grant']"
           >{{ $t('table.bind') }}{{ $t('table.role') }}
           </el-button>
         </el-col>
@@ -136,6 +138,7 @@
               type="text"
               v-waves
               icon="el-icon-edit"
+              v-permission="['sys:user:save']"
               @click="formOpen(scope.row, true)"
             ></el-button>
           </el-tooltip>
@@ -151,6 +154,7 @@
               type="text"
               v-waves
               icon="el-icon-delete"
+              v-permission="['sys:user:remove']"
               @click="handleRemove(scope.row.id)"
             ></el-button>
           </el-tooltip>
@@ -167,6 +171,7 @@
               type="text"
               v-waves
               icon="el-icon-third-locked"
+              v-permission="['sys:user:lock']"
               @click="handleStatus(scope.row.id, false)"
             ></el-button>
           </el-tooltip>
@@ -182,6 +187,7 @@
               type="text"
               v-waves
               icon="el-icon-third-locked-1"
+              v-permission="['sys:user:lock']"
               @click="handleStatus(scope.row.id, true)"
             ></el-button>
           </el-tooltip>
@@ -290,6 +296,7 @@
   import {cacheData} from '@/utils/cache'
   import permission from '@/directive/permission/index.js' // 权限判断指令
   import checkPermission from '@/utils/permission' // 权限判断函数
+  import {validatorUsername} from '@/utils/validatorForm'
 
   import RoleSelect from './components/roleSelect'
   import {validatePhoneNumber} from '@/utils/validate'
@@ -358,6 +365,11 @@
             {
               required: true,
               validator: validatorRequired,
+              trigger: 'blur'
+            },
+            {
+              required: true,
+              validator: validatorUsername,
               trigger: 'blur'
             }
           ],

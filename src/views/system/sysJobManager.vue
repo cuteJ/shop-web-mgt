@@ -1,5 +1,5 @@
 <template>
-  <div class="tab-container">
+  <div class="app-container tab-container">
     <el-tabs
       v-model="tabName"
       type="card"

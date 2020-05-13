@@ -45,6 +45,7 @@
             :placeholder="$t('login.username')"
             name="username"
             type="text"
+            @keyup.enter.native="handleLogin"
           />
           <div class="input-line"></div>
         </el-form-item>
@@ -80,7 +81,7 @@
       </el-form>
     </div>
     <div class="footer">
-      in 2020 onlythinking, a project by Viktor Hanacek.
+      Copyright©2020 icutej.com. All rights reserved.
     </div>
   </div>
 </template>
@@ -162,8 +163,15 @@
             this.$store
               .dispatch('Login', this.loginForm)
               .then(() => {
-                this.loading = false
-                this.$router.push({path: this.redirect || '/'})
+                this.$router.push(
+                  {path: this.redirect || '/'},
+                  () => {
+                    this.loading = false
+                  },
+                  () => {
+                    this.loading = false
+                  }
+                )
               })
               .catch(() => {
                 this.loading = false
@@ -291,15 +299,7 @@
     }
 
     .login-btn {
-      width: 100%;
-      height: 45px;
-      background: $btn_bg;
-      border-radius: 30px;
-
-      font-size: 20px;
-      font-weight: 400;
-      color: rgba(245, 247, 250, 1);
-      line-height: 28px;
+      border-radius: 8px;
     }
   }
 
@@ -318,8 +318,8 @@
       right: 46px;
 
       img {
-        width: 45px;
-        height: 45px;
+        width: 28px;
+        height: 28px;
       }
     }
 
@@ -375,7 +375,7 @@
       height: 45px;
       background: $btn_bg;
       border-radius: 8px;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 400;
       color: rgba(245, 247, 250, 1);
       line-height: 28px;

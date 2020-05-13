@@ -138,7 +138,13 @@ code {
   margin: 12px;
   border-radius: 4px;
   background-color: $white;
-  @include shadow-down()
+  @include shadow-down();
+
+  &_noshadow {
+    box-shadow: none;
+    padding: -20px;
+    margin: -12px;
+  }
 }
 
 .components-container {
@@ -205,7 +211,7 @@ code {
 }
 
 .actions-container {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   margin-left: 5px;
 
   .action-item {
@@ -226,6 +232,29 @@ code {
 
 .multiselect--active {
   z-index: 1000 !important;
+}
+
+
+// 字体样式
+.title {
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 600;
+  color: $title-color;
+}
+
+.content {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: $content-color;
+}
+
+.desc {
+  font-size: 10px;
+  line-height: 20px;
+  font-weight: 400;
+  color: $desc-color;
 }
 
 // 删除线

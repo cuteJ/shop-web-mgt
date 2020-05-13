@@ -101,7 +101,6 @@
 
 <script>
 import { onlineTotal } from '@/api/login'
-import { orderCount } from '@/api/order'
 import CountTo from 'vue-count-to'
 
 export default {
@@ -124,8 +123,6 @@ export default {
         },
         getOnlieTotal() {
             // onlineTotal().then(data => (this.onlineUsers = data))
-            orderCount('confirm').then(data => (this.orderConfirm = data))
-            orderCount('deliver').then(data => (this.orderDeliver = data))
         }
     }
 }

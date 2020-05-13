@@ -9,6 +9,7 @@
             v-waves
             icon="el-icon-plus"
             @click="formOpen"
+            v-permission="['sys:apiList:save']"
           >{{ $t('table.add') }}
           </el-button>
           <el-button
@@ -16,6 +17,7 @@
             size="small"
             v-waves
             icon="el-icon-edit"
+            v-permission="['sys:apiList:save']"
             @click="handleSelected('edit')"
           >{{ $t('table.edit') }}
           </el-button>
@@ -112,6 +114,7 @@
               type="text"
               v-waves
               icon="el-icon-edit"
+              v-permission="['sys:apiList:save']"
               @click="formOpen(scope.row, true)"
             ></el-button>
           </el-tooltip>
@@ -127,6 +130,7 @@
               type="text"
               v-waves
               icon="el-icon-delete"
+              v-permission="['sys:apiList:remove']"
               @click="handleRemove(scope.row.id)"
             ></el-button>
           </el-tooltip>

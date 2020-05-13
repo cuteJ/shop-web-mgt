@@ -1,29 +1,31 @@
 <template>
   <div class="errPage-container">
-    <el-button icon="arrow-left" class="pan-back-btn" @click="back">{{$t('table.back')}}</el-button>
-    <el-row>
-      <el-col :span="12">
-        <h1 class="text-jumbo text-ginormous">Oops!</h1>
+    <div class="page-back">
+      <el-button icon="el-icon-arrow-left" class="back-btn" @click="back">{{$t('table.back')}}</el-button>
+    </div>
+    <div class="errPage-content">
+      <div>
+        <svg-icon
+          icon-class="401_Error"
+          class-name="error-icon"
+        />
         <h2>{{$t('views.errorPage.msg_401')}}</h2>
         <ul class="list-unstyled">
           <li class="link-type">
             <router-link to="/dashboard">{{$t('views.errorPage.goHome')}}</router-link>
           </li>
         </ul>
-      </el-col>
-    </el-row>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-  import errGif from '@/assets/401_images/401.gif'
 
   export default {
     name: 'Page401',
     data() {
-      return {
-        errGif: errGif + '?' + +new Date()
-      }
+      return {}
     },
     methods: {
       back() {
@@ -38,49 +40,35 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+
   .errPage-container {
-    width: 800px;
+    position: relative;
+
+    .back-btn {
+      border: none;
+    }
+  }
+
+  .page-back {
+    position: absolute;
+    left: 50px;
+    top: 50px;
+  }
+
+  .errPage-content {
+    text-align: center;
     max-width: 100%;
-    margin: 100px auto;
+    padding: 100px;
+    margin: 0 auto;
 
-    .pan-back-btn {
-      background: #008489;
-      color: #fff;
-      border: none !important;
+    .error-icon {
+      width: 300px;
+      height: 300px;
+      font-size: 100px;
     }
+  }
 
-    .pan-gif {
-      margin: 0 auto;
-      display: block;
-    }
-
-    .pan-img {
-      display: block;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    .text-jumbo {
-      font-size: 60px;
-      font-weight: 700;
-      color: #484848;
-    }
-
-    .list-unstyled {
-      font-size: 14px;
-
-      li {
-        padding-bottom: 5px;
-      }
-
-      a {
-        color: #008489;
-        text-decoration: none;
-
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-    }
+  .list-unstyled {
+    list-style: none;
   }
 </style>

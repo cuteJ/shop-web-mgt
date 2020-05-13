@@ -1,4 +1,4 @@
-import {asyncRouterMap, constantRouterMap} from '@/router/index'
+import {constantRouterMap} from '@/router/index'
 import Layout from '@/views/layout/Layout'
 import {componentsMap} from '../constants'
 
@@ -40,7 +40,6 @@ function filterAsyncRouter(asyncRouterMap, menus) {
   return accessedRouters
 }
 
-
 /**
  * 暂不支持多层级目录
  * 递归过滤异步路由表，返回符合用户菜单权限的路由表
@@ -70,7 +69,8 @@ function generateRouter(item, isParent) {
     path: item.path,
     name: item.name,
     meta: item.meta,
-    component: isParent ? Layout : componentsMap[item.name]
+    alwaysShow: item.alwaysShow,
+    component: isParent ? Layout : componentsMap[item.name] || componentsMap['blank']
   }
 }
 
@@ -89,19 +89,9 @@ const permission = {
     GenerateRoutes({commit}, userPermission) {
       //生成路由
       return new Promise(resolve => {
-        //roles是后台传过来的角色数组,比如['管理员','风控主管']
-        const roles = userPermission.roles;
         const menus = userPermission.menuList;
         //声明 该角色可用的路由
         let accessedRouters = convertRouter(menus)
-        // let accessedRouters;
-        // if (roles.indexOf('admin') > -1) {
-        //   //其实管理员也拥有全部菜单,这里主要是利用角色判断,节省加载时间
-        //   accessedRouters = asyncRouterMap
-        // } else {
-        //   //否则需要通过以下方法来筛选出本角色可用的路由
-        //   accessedRouters = filterAsyncRouter(asyncRouterMap, menus)
-        // }
         //执行设置路由的方法
         commit('SET_ROUTERS', accessedRouters)
         resolve()

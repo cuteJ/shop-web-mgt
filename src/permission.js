@@ -27,7 +27,6 @@ router.beforeEach((to, from, next) => {
         } else {
             if (!store.getters.userReady && store.getters.roles.length === 0) {
                 // 判断当前用户是否已拉取完user_info信息
-                console.log('用户信息无角色')
                 store
                     .dispatch('GetUserInfo')
                     .then(res => {

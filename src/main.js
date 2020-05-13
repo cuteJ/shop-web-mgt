@@ -7,6 +7,7 @@ import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 import Element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import './assets/third/icon/iconfont.css'
+import 'animate.css'
 
 import '@/styles/index.scss' // global css
 

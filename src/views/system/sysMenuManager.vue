@@ -3,25 +3,27 @@
     <el-row :gutter="20">
       <el-col :span="12">
         <h2>{{$t('views.system.sysMenuManager.message.h1')}}</h2>
-        <div class="filter-input">
-          <el-input
-            :placeholder="$t('views.system.sysMenuManager.message.input_placeholder')"
-            v-model="filterText"
-          >
-          </el-input>
-        </div>
-        <div>
-          <el-tree
-            class="filter-tree"
-            :highlight-current="true"
-            :load="handleQueryList"
-            lazy
-            :props="defaultProps"
-            :filter-node-method="filterNode"
-            ref="menuTree"
-            @node-contextmenu="openMenu"
-            @node-click="handleSelected"
-          >
+        <div class="menu-details">
+          <div class="filter-input">
+            <el-input
+              :placeholder="$t('views.system.sysMenuManager.message.input_placeholder')"
+              v-model="filterText"
+              @keyup.enter.native="handleFilterText"
+            >
+            </el-input>
+          </div>
+          <div>
+            <el-tree
+              class="filter-tree"
+              :highlight-current="true"
+              :load="handleQueryList"
+              lazy
+              :props="defaultProps"
+              :filter-node-method="filterNode"
+              ref="menuTree"
+              @node-contextmenu="openMenu"
+              @node-click="handleSelected"
+            >
           <span
             class="custom-tree-node"
             slot-scope="{ node, data }"
@@ -46,128 +48,158 @@
               </el-button>
             </span>
           </span>
-          </el-tree>
-          <ul v-show="menuVisible" :style="{left:left + 'px',top:top + 'px'}" ref="contextmenu" class="contextmenu">
-            <li @click="rightAppend(true)" v-show="firstLevel"><i class="el-icon-circle-plus-outline"></i>{{$t('views.system.sysMenuManager.action.add')}}</li>
-            <li @click="rightAppend(false)"><i class="el-icon-circle-plus-outline"></i>{{$t('views.system.sysMenuManager.action.addChild')}}</li>
-            <li @click="rightRemove"><i class="el-icon-remove-outline"></i>{{$t('views.system.sysMenuManager.action.remove')}}</li>
-          </ul>
+            </el-tree>
+            <ul v-show="menuVisible" :style="{left:left + 'px',top:top + 'px'}" ref="contextmenu" class="contextmenu">
+              <li @click="rightAppend(true)" v-show="firstLevel"><i class="el-icon-circle-plus-outline"></i>{{$t('views.system.sysMenuManager.action.add')}}
+              </li>
+              <li @click="rightAppend(false)"><i class="el-icon-circle-plus-outline"></i>{{$t('views.system.sysMenuManager.action.addChild')}}
+              </li>
+              <li @click="rightRemove"><i class="el-icon-remove-outline"></i>{{$t('views.system.sysMenuManager.action.remove')}}
+              </li>
+            </ul>
+          </div>
         </div>
       </el-col>
       <el-col :span="12">
         <h2>{{$t('views.system.sysMenuManager.message.h2')}}</h2>
-        <el-row>
-          <div class="filter-action">
-            <el-button
-              class="action-item"
-              size="small"
-              v-waves
-              icon="el-icon-setting"
-              @click="bindAuthorities"
-              v-permission="['sys:grant:index']"
-            >{{$t('table.bind')}}{{ $t('table.authority') }}
-            </el-button>
-            <el-button
-              class="action-item"
-              size="small"
-              v-waves
-              icon="el-icon-plus"
-              @click="formOpen"
-            > {{$t('views.system.sysMenuManager.action.child')}}
-            </el-button>
-            <el-button
-              type="primary"
-              size="small"
-              icon="el-icon-edit"
-              @click="handleEditSave"
-            > {{$t('views.system.sysMenuManager.action.update')}}
-            </el-button>
-          </div>
-        </el-row>
-        <el-row>
-          <el-form
-            ref="formEditData"
-            :rules="rules"
-            :model="formEditData"
-            label-width="100px"
-          >
-            <el-form-item
-              :label="$t('views.system.sysMenuManager.formData.parentId')"
-              prop="parentId"
-            >
-              <el-input
-                v-model="formEditData.parentId"
-                autocomplete="off"
-                :disabled="true"
-              ></el-input>
-            </el-form-item>
-            <el-form-item
-              :label="$t('views.system.sysMenuManager.formData.component')"
-              prop="component"
-            >
-              <el-select style="width:100%" v-model="formEditData.component">
-                <el-option
-                  v-for="item in menusComponents"
-                  :key="item"
-                  :label="item"
-                  :value="item">
-                  <span style="float: left">{{ $t('route.'+item) }}</span>
-                  <span style="float: right; color: #8492a6; font-size: 13px">{{ item }}</span>
-                </el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item
-              :label="$t('views.system.sysMenuManager.formData.path')"
-              prop="path"
-            >
-              <el-input
-                v-model="formEditData.path"
-                autocomplete="off"
-              ></el-input>
-            </el-form-item>
-            <el-form-item
-              :label="$t('views.system.sysMenuManager.formData.hidden')"
-              prop="hidden"
-            >
-              <el-switch
-                v-model="formEditData.hidden"
-                :active-text="$t('views.commons.codes.yes')"
-                :inactive-text="$t('views.commons.codes.no')">
-              </el-switch>
-            </el-form-item>
-            <el-form-item
-              :label="$t('views.system.sysMenuManager.formData.meta')"
-              prop="meta"
-            >
+        <div class="menu-details">
+          <el-row>
+            <div class="filter-action">
               <el-button
                 class="action-item"
-                type="text"
+                size="small"
                 v-waves
-                icon="el-icon-edit"
-                @click="formOpenParams"
-              >{{$t('views.system.sysMenuManager.action.formOpenParams')}}
+                icon="el-icon-setting"
+                @click="bindAuthorities"
+                v-permission="['sys:menu:grant']"
+              >{{$t('table.bind')}}{{ $t('table.authority') }}
               </el-button>
-            </el-form-item>
-            <el-form-item
-              :label="$t('table.remark')"
+              <el-button
+                class="action-item"
+                size="small"
+                v-waves
+                icon="el-icon-plus"
+                v-permission="['sys:menu:save']"
+                @click="formOpen"
+              > {{$t('views.system.sysMenuManager.action.child')}}
+              </el-button>
+              <el-button
+                type="primary"
+                size="small"
+                icon="el-icon-edit"
+                v-permission="['sys:menu:save']"
+                @click="handleEditSave"
+              > {{$t('views.system.sysMenuManager.action.update')}}
+              </el-button>
+            </div>
+          </el-row>
+          <el-row v-if="formEditData.path && formEditData.component">
+            <el-form
+              ref="formEditData"
+              :rules="editRules"
+              :model="formEditData"
+              label-width="100px"
             >
-              <el-input
-                type="textarea"
-                v-model="formEditData.remark"
-                autocomplete="off"
-              ></el-input>
-            </el-form-item>
-            <el-form-item
-              :label="$t('table.byOrder')"
-              prop="byOrder"
-            >
-              <el-input
-                v-model="formEditData.byOrder"
-                autocomplete="off"
-              ></el-input>
-            </el-form-item>
-          </el-form>
-        </el-row>
+              <el-form-item
+                :label="$t('views.system.sysMenuManager.formData.parentId')"
+                prop="parentId"
+              >
+                <el-input
+                  v-model="formEditData.parentId"
+                  autocomplete="off"
+                  :disabled="true"
+                ></el-input>
+              </el-form-item>
+              <el-form-item
+                :label="$t('views.system.sysMenuManager.formData.component')"
+                prop="component"
+              >
+                <el-select style="width:100%" v-model="formEditData.component">
+                  <el-option
+                    v-for="item in menusComponents"
+                    :key="item"
+                    :label="item"
+                    :value="item">
+                    <span style="float: left">{{ $t('route.'+item) }}</span>
+                    <span style="float: right; color: #8492a6; font-size: 13px">{{ item }}</span>
+                  </el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item
+                :label="$t('views.system.sysMenuManager.formData.path')"
+                prop="path"
+              >
+                <el-input
+                  v-model="formEditData.path"
+                  autocomplete="off"
+                ></el-input>
+              </el-form-item>
+              <el-form-item
+                :label="$t('views.system.sysMenuManager.formData.alwaysShow')"
+                prop="alwaysShow"
+              >
+                <el-switch
+                  v-model="formEditData.alwaysShow"
+                  :active-text="$t('views.commons.codes.yes')"
+                  :inactive-text="$t('views.commons.codes.no')">
+                </el-switch>
+                <span class="item-desc">{{$t('views.system.sysMenuManager.formData.alwaysShowDesc')}}</span>
+              </el-form-item>
+              <el-form-item
+                :label="$t('views.system.sysMenuManager.formData.hidden')"
+                prop="hidden"
+              >
+                <el-switch
+                  v-model="formEditData.hidden"
+                  :active-text="$t('views.commons.codes.yes')"
+                  :inactive-text="$t('views.commons.codes.no')">
+                </el-switch>
+                <span class="item-desc">{{$t('views.system.sysMenuManager.formData.hiddenDesc')}}</span>
+              </el-form-item>
+              <el-form-item
+                :label="$t('views.system.sysMenuManager.formData.meta')"
+                prop="meta"
+              >
+                <el-button
+                  class="action-item"
+                  type="text"
+                  v-waves
+                  icon="el-icon-edit"
+                  @click="formOpenParams"
+                >{{$t('views.system.sysMenuManager.action.formOpenParams')}}
+                </el-button>
+                <span class="item-desc">{{$t('views.system.sysMenuManager.formData.metaDesc')}}</span>
+                <div>
+                  <div v-for="(value, name) in JSON.parse(formEditData.meta||'{}')">
+                    {{name}} : {{value}}
+                  </div>
+                </div>
+
+              </el-form-item>
+              <el-form-item
+                :label="$t('table.remark')"
+              >
+                <el-input
+                  type="textarea"
+                  v-model="formEditData.remark"
+                  autocomplete="off"
+                ></el-input>
+              </el-form-item>
+              <el-form-item
+                :label="$t('table.byOrder')"
+                prop="byOrder"
+              >
+                <el-input
+                  v-model="formEditData.byOrder"
+                  autocomplete="off"
+                ></el-input>
+              </el-form-item>
+            </el-form>
+          </el-row>
+          <el-row v-else class="empty-data">
+            {{$t('views.system.sysMenuManager.message.empty')}}
+          </el-row>
+        </div>
       </el-col>
     </el-row>
     <form-dialog
@@ -217,6 +249,17 @@
           ></el-input>
         </el-form-item>
         <el-form-item
+          :label="$t('views.system.sysMenuManager.formData.alwaysShow')"
+          prop="alwaysShow"
+        >
+          <el-switch
+            v-model="formData.alwaysShow"
+            :active-text="$t('views.commons.codes.yes')"
+            :inactive-text="$t('views.commons.codes.no')">
+          </el-switch>
+          <span class="item-desc">{{$t('views.system.sysMenuManager.formData.alwaysShowDesc')}}</span>
+        </el-form-item>
+        <el-form-item
           :label="$t('views.system.sysMenuManager.formData.hidden')"
           prop="hidden"
         >
@@ -225,6 +268,7 @@
             :active-text="$t('views.commons.codes.yes')"
             :inactive-text="$t('views.commons.codes.no')">
           </el-switch>
+          <span class="item-desc">{{$t('views.system.sysMenuManager.formData.hiddenDesc')}}</span>
         </el-form-item>
         <el-form-item
           :label="$t('table.remark')"
@@ -273,7 +317,8 @@
     sysMenuSave,
     sysMenuRemove,
     sysMenuDetail,
-    batchGrantMenuPermissions
+    batchGrantMenuPermissions,
+    uniqueValue
   } from '@/api/system'
   import waves from '@/directive/waves' // Waves directive
   import SysCode from '@/components/SysCode'
@@ -290,12 +335,40 @@
     directives: {waves, permission},
     filters: {},
     data() {
+      const that = this;
       const validatorRequired = (rule, value, callback) => {
         if (!value) {
           callback(new Error(i18n.t(`views.system.sysMenuManager.formData.${rule.field}`) + i18n.t('action.required')))
         } else {
           callback()
         }
+      };
+      const validatorUnique = (rule, value, callback) => {
+        uniqueValue('MENU_PATH', {parentId: that.formData.parentId, path: value}).then(data => {
+          if (data && data > 0) {
+            callback(new Error(i18n.t(`views.system.sysMenuManager.formData.${rule.field}`) + i18n.t('action.unique')))
+          } else {
+            callback()
+          }
+        }).catch(err => {
+          callback();
+        });
+      };
+
+      const validatorEditUnique = (rule, value, callback) => {
+        uniqueValue('MENU_PATH', {
+          parentId: that.formEditData.parentId,
+          path: value,
+          id: that.formEditData.id
+        }).then(data => {
+          if (data && data > 0) {
+            callback(new Error(i18n.t(`views.system.sysMenuManager.formData.${rule.field}`) + i18n.t('action.unique')))
+          } else {
+            callback()
+          }
+        }).catch(err => {
+          callback();
+        });
       };
       return {
         cacheData: {},
@@ -316,6 +389,7 @@
           path: "",
           component: "",
           hidden: false,
+          alwaysShow: false,
           meta: "",
           parentId: "",
           redirect: "",
@@ -326,6 +400,7 @@
           path: "",
           component: "",
           hidden: false,
+          alwaysShow: false,
           meta: "",
           parentId: "",
           redirect: "",
@@ -349,6 +424,27 @@
         resolve: null,
         selectedRole: {bindId: '', bindType: 'role'},
         bindAuthoritiesVisible: false,
+        editRules: {
+          component: [
+            {
+              required: true,
+              validator: validatorRequired,
+              trigger: 'blur'
+            }
+          ],
+          path: [
+            {
+              required: true,
+              validator: validatorRequired,
+              trigger: 'blur'
+            },
+            {
+              required: true,
+              validator: validatorEditUnique,
+              trigger: 'blur'
+            }
+          ]
+        },
         rules: {
           component: [
             {
@@ -362,6 +458,11 @@
               required: true,
               validator: validatorRequired,
               trigger: 'blur'
+            },
+            {
+              required: true,
+              validator: validatorUnique,
+              trigger: 'blur'
             }
           ]
         }
@@ -372,9 +473,6 @@
     mounted() {
     },
     watch: {
-      filterText(val) {
-        this.$refs.menuTree.filter(val)
-      },
       menuVisible(value) {
         if (value) {
           document.body.addEventListener('click', this.closeMenu)
@@ -392,6 +490,9 @@
       handleFilter() {
         this.node.childNodes = []
         this.handleQueryList(this.node, this.resolve)
+      },
+      handleFilterText() {
+        this.$refs.menuTree.filter(this.filterText)
       },
       filterNode(value, data) {
         if (!value) return true
@@ -573,12 +674,9 @@
           this.bindAuthoritiesVisible = false
           return;
         }
-        const authorityIds = multipleSelection.map(v => {
-          return v.id
-        })
         batchGrantMenuPermissions({
           grantIds: [menuId],
-          permissions: authorityIds
+          permissions: multipleSelection
         })
           .then(data => {
             this.handleFilter()
@@ -595,6 +693,23 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+  @import "../../styles/variables";
+  @import "../../styles/mixins/shadow";
+
+  .item-desc {
+    margin-left: 20px;
+    font-size: 10px;
+    font-weight: 400;
+    color: $desc-color;
+  }
+
+  .empty-data {
+    text-align: center;
+    min-height: 500px;
+    padding: 200px 0;
+    color: $desc-color;
+  }
+
   .filter-input {
     padding: 15px 0;
   }
@@ -612,6 +727,11 @@
     .detail-info {
       margin-top: 10px;
     }
+  }
+
+  .menu-details {
+    padding: 8px;
+    @include shadow-down(3)
   }
 
   .custom-tree-node {

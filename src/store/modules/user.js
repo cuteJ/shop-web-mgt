@@ -92,7 +92,7 @@ const user = {
         })
           .then(data => {
             commit('RESET_USER')
-            removeToken()
+            removeToken();
             resolve(data)
           })
           .catch(() => {
