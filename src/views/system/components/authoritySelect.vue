@@ -10,7 +10,7 @@
         <div class="actions-container">
           <el-row>
             <el-col :span="24">
-              <el-input placeholder="请输入查询内容" v-model="searchText"
+              <el-input :placeholder="$t('components.dyFilterInput.placeholder')" v-model="searchText"
                         clearable style="width: 100%" class="input-with-select"
                         @keyup.enter.native="handleFilter"
               >

@@ -40,14 +40,14 @@
           >{{$t('table.bind')}}{{ $t('table.authority') }}
           </el-button>
         </el-col>
-        <el-col :span="6">
+        <div class="right-actions">
           <dy-filter-input
             :filterSearch='handleFilter'
             :selectType="'ROLE'"
             :selected.sync="listQuery.roleCode"
           >
           </dy-filter-input>
-        </el-col>
+        </div>
       </el-row>
     </div>
     <el-table

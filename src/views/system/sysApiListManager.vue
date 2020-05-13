@@ -1,28 +1,24 @@
 <template>
   <div class="app-container">
     <div class="actions-container">
-      <el-row>
-        <el-col :span="24">
-          <el-button
-            class="action-item"
-            size="small"
-            v-waves
-            icon="el-icon-plus"
-            @click="formOpen"
-            v-permission="['sys:apiList:save']"
-          >{{ $t('table.add') }}
-          </el-button>
-          <el-button
-            class="action-item"
-            size="small"
-            v-waves
-            icon="el-icon-edit"
-            v-permission="['sys:apiList:save']"
-            @click="handleSelected('edit')"
-          >{{ $t('table.edit') }}
-          </el-button>
-        </el-col>
-      </el-row>
+      <el-button
+        class="action-item"
+        size="small"
+        v-waves
+        icon="el-icon-plus"
+        @click="formOpen"
+        v-permission="['sys:apiList:save']"
+      >{{ $t('table.add') }}
+      </el-button>
+      <el-button
+        class="action-item"
+        size="small"
+        v-waves
+        icon="el-icon-edit"
+        v-permission="['sys:apiList:save']"
+        @click="handleSelected('edit')"
+      >{{ $t('table.edit') }}
+      </el-button>
     </div>
     <el-table
       v-loading="listLoading"

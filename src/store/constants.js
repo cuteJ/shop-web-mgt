@@ -15,6 +15,7 @@ export const componentsMap = {
   blank: () => import('@/views/errorPage/blank')
 };
 
+// 用于界面上添加菜单时选择数据
 export const menusComponents = [
   'parent',
   'sysUserManager',

@@ -40,7 +40,6 @@
           >{{ $t('table.edit') }}
           </el-button>
         </el-col>
-        <el-col :span="4">
           <div class="right-actions">
             <el-button
               class="action-item"
@@ -57,7 +56,6 @@
             >{{ $t('table.query') }}
             </el-button>
           </div>
-        </el-col>
       </el-row>
     </div>
     <el-table

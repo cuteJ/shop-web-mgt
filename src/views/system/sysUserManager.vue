@@ -31,7 +31,7 @@
           >{{ $t('table.bind') }}{{ $t('table.role') }}
           </el-button>
         </el-col>
-        <el-col :span="6">
+        <div class="right-actions">
           <dy-filter-input
             :filterSearch='handleFilter'
             :triggerOnfocus='true'
@@ -39,7 +39,7 @@
             :selected.sync="listQuery.username"
           >
           </dy-filter-input>
-        </el-col>
+        </div>
       </el-row>
     </div>
     <el-table

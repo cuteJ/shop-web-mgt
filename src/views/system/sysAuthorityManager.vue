@@ -54,24 +54,22 @@
           >{{ $t('table.sync') }}
           </el-button>
         </el-col>
-        <el-col :span="4">
-          <div class="right-actions">
-            <el-button
-              class="action-item"
-              size="small"
-              icon="el-icon-circle-close"
-              @click="handleReset"
-            >{{ $t('table.reset') }}
-            </el-button>
-            <el-button
-              class="action-item"
-              size="small"
-              icon="el-icon-search"
-              @click="handleFilter"
-            >{{ $t('table.query') }}
-            </el-button>
-          </div>
-        </el-col>
+        <div class="right-actions">
+          <el-button
+            class="action-item"
+            size="small"
+            icon="el-icon-circle-close"
+            @click="handleReset"
+          >{{ $t('table.reset') }}
+          </el-button>
+          <el-button
+            class="action-item"
+            size="small"
+            icon="el-icon-search"
+            @click="handleFilter"
+          >{{ $t('table.query') }}
+          </el-button>
+        </div>
       </el-row>
     </div>
     <el-table
