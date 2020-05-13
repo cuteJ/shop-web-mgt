@@ -73,7 +73,7 @@
         <el-button
           :loading="loading"
           type="primary"
-          class="login-btn shake"
+          class="login-btn"
           @click.native.prevent="handleLogin"
         >{{ $t('login.logIn') }}
         </el-button>
