@@ -50,6 +50,7 @@
             v-waves
             icon="el-icon-refresh"
             @click="handleSyncAuthorities"
+            v-permission="['sys:authority:save']"
           >{{ $t('table.sync') }}
           </el-button>
         </el-col>

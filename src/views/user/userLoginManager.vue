@@ -237,6 +237,7 @@
         this.listQuery.username = '';
         this.listQuery.phoneNo = '';
         this.listQuery.openid = '';
+        this.handleFilter();
       },
       /***********************Remote query list************************* */
       handleQueryList() {

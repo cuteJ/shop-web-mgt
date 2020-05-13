@@ -179,6 +179,7 @@
       },
       handleReset() {
         this.listQuery.operator = '';
+        this.handleFilter();
       },
       /***********************Remote query list************************* */
       handleQueryList() {

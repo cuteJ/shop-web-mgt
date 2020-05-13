@@ -11,6 +11,7 @@
             v-waves
             icon="el-icon-plus"
             @click="formOpen"
+            v-permission="['sys:quartz_job:save']"
           >{{ $t('table.add') }}
           </el-button>
           <el-button
@@ -19,6 +20,7 @@
             v-waves
             icon="el-icon-edit"
             @click="handleSelected('edit')"
+            v-permission="['sys:quartz_job:save']"
           >{{ $t('table.edit') }}
           </el-button>
           <el-button
@@ -27,6 +29,7 @@
             v-waves
             icon="el-icon-plus"
             @click="handleSelected('addInstance')"
+            v-permission="['sys:quartz_job:save']"
           >{{ $t('views.system.sysJobManager.jobDetailsManager.action.addInstance') }}
           </el-button>
         </el-col>
@@ -148,6 +151,7 @@
               type="text"
               v-waves
               icon="el-icon-edit"
+              v-permission="['sys:quartz_job:save']"
               @click="formOpen(scope.row, true)"
             ></el-button>
           </el-tooltip>
@@ -163,6 +167,7 @@
               type="text"
               v-waves
               icon="el-icon-delete"
+              v-permission="['sys:quartz_job:remove']"
               @click="handleRemove(scope.row.id)"
             ></el-button>
           </el-tooltip>
