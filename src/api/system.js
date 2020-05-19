@@ -569,3 +569,12 @@ export function optLogList(query) {
     params: query
   })
 }
+
+// 系统消息
+export function sysMessageList(query) {
+  return request({
+    url: '/api/sys/message/list',
+    method: 'post',
+    params: query
+  })
+}

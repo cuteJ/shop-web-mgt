@@ -28,6 +28,34 @@ import map from 'lodash/map'
 
 import * as filters from './filters' // global filters
 import watermark from 'watermark-dom' // 水印
+import VueNativeSock from 'vue-native-websocket'
+import {config} from '@/utils/config'
+
+import VueScrollTo from'vue-scrollto';
+
+// You can also pass in the default options
+Vue.use(VueScrollTo, {
+  container: "body",
+  duration: 500,
+  easing: "ease",
+  offset: 0,
+  force: true,
+  cancelable: true,
+  onStart: false,
+  onDone: false,
+  onCancel: false,
+  x: false,
+  y: true
+});
+
+Vue.use(VueNativeSock, config.wsUrl, {
+  format: 'json',
+  store: store,
+  connectManually: true,
+  reconnection: true, // (Boolean) whether to reconnect automatically (false)
+  reconnectionAttempts: 5, // (Number) number of reconnection attempts before giving up (Infinity),
+  reconnectionDelay: 3000,
+});
 
 watermark.init({
   watermark_txt: "Show me you code.",
@@ -46,7 +74,7 @@ watermark.init({
   watermark_angle: 15,//水印倾斜度数
 })
 
-Vue.use(VueLodash, {lodash: {map, random}})
+Vue.use(VueLodash, {lodash: {map, random}});
 
 Vue.use(UUID)
 Vue.use(BaiduMap, {

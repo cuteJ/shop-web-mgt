@@ -75,3 +75,12 @@ export function onlineTotal() {
         method: 'get'
     })
 }
+
+// 读取该用户下的消息
+export function sysUserMessageList(query) {
+  return request({
+    url: '/api/sys/message/user_list',
+    method: 'post',
+    params: query
+  })
+}

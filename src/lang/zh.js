@@ -25,7 +25,9 @@ export default {
     sysOptLogManager: '操作日志',
     userLoginManager: '用户列表',
     appBrandManager: '应用管理',
+    sysMsgManager: '消息管理',
     toolsManager: '基础组件',
+    userMsgManager: '系统消息',
     system: '权限',
     integrate: '综合',
     parent: '父菜单'

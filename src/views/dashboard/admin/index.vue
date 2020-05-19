@@ -1,71 +1,75 @@
 <template>
-<!--  <div class="dashboard-editor-container">-->
-<!--     <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">-->
-<!--        <line-chart :chart-data="lineChartData" />-->
-<!--    </el-row>-->
-<!--    <panel-group @handleSetData="handleSetData"/>-->
-<!--    <el-row v-if="roles.includes('admin')" style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">-->
-<!--      <onlie-user></onlie-user>-->
-<!--    </el-row>-->
-
-<!--     <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">-->
-<!--        <bm-search :selected.sync="selected"></bm-search>-->
-<!--    </el-row>-->
-<!--  </div>-->
   <div>
+    <el-row>
+      <user-chat :visible.sync="chatVisible"></user-chat>
+    </el-row>
+    <div class="chat-window" @click="openChat">
+      <svg-icon icon-class="chat" class-name="chat-icon"/>
+    </div>
+    <!--    <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">-->
+    <!--      <bm-search :selected.sync="selected"></bm-search>-->
+    <!--    </el-row>-->
   </div>
 </template>
 
 <script>
   import PanelGroup from './components/PanelGroup'
-  import LineChart from './components/LineChart'
-  import OnlieUser from './components/OnlieUser'
   import BmSearch from '@/components/BmSearch'
+  import UserChat from './components/UserChat'
   import {mapGetters} from "vuex";
-
-  import {test} from '@/api/system'
-
-  const lineChartData = {
-    newVisitis: {
-      expectedData: [100, 120, 161, 134, 105, 160, 165],
-      actualData: [120, 82, 91, 154, 162, 140, 145]
-    }
-  }
 
   export default {
     name: 'DashboardAdmin',
     components: {
       PanelGroup,
-      LineChart,
-      OnlieUser,
-      BmSearch
+      BmSearch,
+      UserChat
     },
     data() {
       return {
-        lineChartData: lineChartData.newVisitis,
-        selected: {}
+        selected: {},
+        chatVisible: false
       }
     },
     computed: {
       ...mapGetters(['roles'])
     },
     methods: {
-      handleSetData(type) {
-        if ('orderConfirm' === type) {
-          this.$router.push({
-            path: '/order/confirm_order_manager'
-          })
-        } else if ('orderDeliver' === type) {
-          this.$router.push({
-            path: '/order/deliver_order_manager'
-          })
-        }
+      openChat() {
+        this.chatVisible = true;
       }
     }
   }
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+
+  @import "../../../styles/variables";
+  @import "../../../styles/mixins/shadow";
+
+  .chat-window {
+    border-radius: 50px;
+    padding: 10px;
+    right: 40px;
+    bottom: 30px;
+    cursor: pointer;
+    position: fixed;
+    background-color: transparent;
+    @include shadow-down();
+
+    &:hover {
+      .chat-icon {
+        color: #67C23A;
+        transform: scale(1.1);
+      }
+    }
+
+    .chat-icon {
+      color: #67C23A;
+      font-size: 40px;
+    }
+  }
+
   .dashboard-editor-container {
     padding: 32px;
     background-color: rgb(240, 242, 245);

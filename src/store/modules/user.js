@@ -1,5 +1,4 @@
 import {getToken, removeToken, setToken} from '@/utils/auth'
-// import {getUserInfo, login, logout} from '@/api/login'
 import store from '@/store'
 import router from '@/router'
 import {default as api} from '@/utils/request'

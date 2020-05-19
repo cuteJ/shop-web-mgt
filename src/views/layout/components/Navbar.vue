@@ -10,6 +10,11 @@
 
     <div class="right-menu">
       <template>
+        <div class="right-menu-item" @click="toUserMsg">
+          <el-badge :is-dot="hasNewMsg">
+            <svg-icon class-name="email-icon" icon-class="email-o"/>
+          </el-badge>
+        </div>
         <lang-select class="international right-menu-item"/>
         <!--        <el-tooltip-->
         <!--          :content="$t('navbar.screenfull')"-->
@@ -95,7 +100,7 @@
       }
     },
     computed: {
-      ...mapGetters(['sidebar', 'loginName', 'avatar', 'device'])
+      ...mapGetters(['sidebar', 'loginName', 'avatar', 'hasNewMsg', 'device'])
     },
     methods: {
       toggleSideBar() {
@@ -105,15 +110,24 @@
         this.$store.dispatch('LogOut').then(() => {
           location.reload() // In order to re-instantiate the vue-router object to avoid bugs
         })
+      },
+      toUserMsg() {
+        this.$router.push({path: '/user_msg/index'})
       }
     }
   }
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+
+  .email-icon {
+    font-size: 24px;
+    cursor: pointer;
+    vertical-align: -4px !important;
+  }
+
   .navbar {
     height: 50px;
-    line-height: 50px;
     border-radius: 0px !important;
     background-color: white;
 
@@ -144,6 +158,7 @@
       .right-menu-item {
         display: inline-block;
         margin: 0 8px;
+        padding: 10px 0;
       }
 
       .screenfull {

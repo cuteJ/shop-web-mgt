@@ -14,6 +14,12 @@ const getters = {
   roles: state => state.user.roles,
   permissions: state => state.user.permissions,
   permission_routers: state => state.permission.routers,
-  addRouters: state => state.permission.addRouters
+  addRouters: state => state.permission.addRouters,
+
+  hasNewMsg: state => state.ws.wsData.hasNewMsg,
+  isConnected: state => state.ws.socket.isConnected,
+  message: state => state.ws.socket.message,
+  reconnectError: state => state.ws.socket.reconnectError
+
 }
 export default getters

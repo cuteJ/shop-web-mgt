@@ -94,7 +94,20 @@ export const constantRouterMap = [
         meta: {title: 'profile'}
       }
     ]
-  }
+  },
+  {
+    path: '/user_msg',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/profile/userMsgManager'),
+        name: 'userMsgManager',
+        meta: {title: 'userMsgManager'}
+      }
+    ]
+  },
 ];
 
 export default new Router({
