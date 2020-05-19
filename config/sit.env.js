@@ -5,6 +5,6 @@ module.exports = {
   APP_CONFIG:{
     name:'"测试环境应用"',
     baseUrl: '"https://www.zzhjshop.com/shop_test"',
-    wsUrl: '"ws://www.zzhjshop.com/shop_test/ws"'
+    wsUrl: '"wss://www.zzhjshop.com/shop_test/ws"'
   }
 }
