@@ -59,6 +59,7 @@ const ws = {
         const payLoad = {
           type: 'chat',
           username: rootGetters.loginName,
+          avatar: rootGetters.avatar,
           data: data
         };
         Vue.prototype.$socket.sendObj(payLoad)
