@@ -28,6 +28,8 @@ export default {
     sysMsgManager: '消息管理',
     toolsManager: '基础组件',
     userMsgManager: '系统消息',
+    chartsManager: "图表统计",
+    statisticsManager: '统计管理',
     system: '权限',
     integrate: '综合',
     parent: '父菜单'

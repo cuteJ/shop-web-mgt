@@ -12,6 +12,7 @@ export const componentsMap = {
   toolsManager: () => import('@/views/tools/toolsManager'),
   appBrandManager: () => import('@/views/app/appBrandManager'),
   userLoginManager: () => import('@/views/user/userLoginManager'),
+  chartsManager: () => import('@/views/charts/chartsManager'),
   blank: () => import('@/views/errorPage/blank')
 };
 
@@ -29,5 +30,6 @@ export const menusComponents = [
   'sysMetadataManager',
   'toolsManager',
   'appBrandManager',
-  'userLoginManager'
+  'userLoginManager',
+  'chartsManager'
 ];

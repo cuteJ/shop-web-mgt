@@ -1,4 +1,7 @@
 export default {
+  municipality: {
+    '新疆': '新疆维吾尔',
+  },
   province_list: {
     110000: '北京市',
     120000: '天津市',

@@ -8,6 +8,7 @@
             :placeholder="placeholder"
             filterable
             clearable
+            @change="handleChange"
             @active-item-change="handleItemChange"
         ></el-cascader>
         <el-cascader
@@ -20,6 +21,7 @@
             collapse-tags
             :placeholder="placeholder"
             :props="props"
+            @change="handleChange"
         ></el-cascader>
     </div>
 </template>
@@ -78,6 +80,9 @@ export default {
         }
     },
     methods: {
+        handleChange(val) {
+          this.$emit('change', val)
+        },
         handleItemChange(val) {
             console.log(val)
             let parentId = val[0]
